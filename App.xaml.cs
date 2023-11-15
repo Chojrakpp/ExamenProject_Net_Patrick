@@ -15,6 +15,7 @@ namespace ExamenProject_Patrick
     public partial class App : Application
     {
         internal static MyDbContext context = null;
-
+        internal static MainWindow mainWindow = null;
+        internal static Gebruiker gebruiker = null;
     }
 }

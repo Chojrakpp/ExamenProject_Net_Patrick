@@ -11,6 +11,17 @@ namespace ExamenProject_Patrick.Data
     {
         internal static void DbSetInitializer(MyDbContext context)
         {
+            Gebruiker dummy = null;
+            if (!context.Gebruikers.Any())
+            {
+                dummy = new Gebruiker { Naam = "-", Email = "-", Wachtwoord = "shit" };
+                context.Add(dummy);
+                context.SaveChanges();
+            }
+
+            if (dummy == null)
+                dummy = context.Gebruikers.First(g => g.Naam == "-");
+
             if (!context.Onderwerpen.Any())
             {
                 context.Add(new Onderwerp { Naam = "testOnderwerp" });

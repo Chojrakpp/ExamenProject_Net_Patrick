@@ -1,21 +1,13 @@
 ﻿using ExamenProject_Patrick.Data;
 using ExamenProject_Patrick.Models;
+using ExamenProject_Patrick.Windows;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ExamenProject_Patrick
 {
@@ -254,6 +246,23 @@ namespace ExamenProject_Patrick
             {
                 ShowMessage("Voer een onderwerp in de textbox in.");
             }
+        }
+
+        private void miLogin_Click(object sender, RoutedEventArgs e)
+        {
+            new Login().Show();
+        }
+        private void miRegistreren_Click(object sender, RoutedEventArgs e)
+        {
+            new Registratie().Show();
+        }
+
+        private void miAfmelden_Click(object sender, RoutedEventArgs e) // zal niet zerken als geen referentie in app
+        {
+            App.mainWindow.miAfmelden.Visibility = Visibility.Collapsed;
+            App.mainWindow.miRegistreren.Visibility = Visibility.Collapsed;
+            App.mainWindow.miLogin.Visibility = Visibility.Collapsed;
+            this.Close();
         }
 
         private void ClearMessage()

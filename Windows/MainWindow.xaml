@@ -29,7 +29,7 @@
 
                         <!--Menu Naam - Gebruiker-->
                         <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center" Width="177">
-                            <TextBlock Text="Name" Foreground="White" FontSize="22" FontWeight="SemiBold"
+                            <TextBlock x:Name="miAangemeld" Text="Name" Foreground="White" FontSize="22" FontWeight="SemiBold"
                                DockPanel.Dock="Top" TextAlignment="Center" Margin="0 25 0 10"/>
                             <TextBlock Text="Member" Foreground="#d0bfff" FontSize="14" FontWeight="SemiBold"
                                DockPanel.Dock="Top" TextAlignment="Center"/>
@@ -51,7 +51,9 @@
 
                         <!--Menu Item - Login-->
                         <StackPanel DockPanel.Dock="Bottom" Width="177" VerticalAlignment="Bottom" Margin="0 0 0 20" >
-                            <Button Name="miLogin" Background="Transparent" Foreground="#d0c0ff" Height="35" Margin="10 3" FontSize="13" Width="155" HorizontalContentAlignment="Left" BorderThickness="0">
+                            <Button Name="miLogin" Click="miLogin_Click"
+                                    Background="Transparent" Foreground="#d0c0ff" Height="35" Margin="10 3" FontSize="13" Width="155"
+                                    HorizontalContentAlignment="Left" BorderThickness="0">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Foreground="#d0c0ff" Content="&#59257;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Margin="20 2 10 2"/>
                                     <TextBlock VerticalAlignment="Center" Text="Aanmelden" Foreground="#d0c0ff"/>
@@ -59,7 +61,9 @@
                             </Button>
 
                             <!--Menu Item - Register-->
-                            <Button Name="miRegistreren" Background="#d0c0ff" Foreground="#d0c0ff" Height="35" Margin="10 3" FontSize="13" Width="155" HorizontalContentAlignment="Left" BorderThickness="0">
+                            <Button Name="miRegistreren" Click="miRegistreren_Click" 
+                                    Background="#d0c0ff" Foreground="#d0c0ff" Height="35" Margin="10 3" FontSize="13" Width="155" 
+                                    HorizontalContentAlignment="Left" BorderThickness="0">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Foreground="#623ed0" Content="&#xE8FA;" FontSize="13" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Margin="20 2 10 2"/>
                                     <TextBlock VerticalAlignment="Center" Text="Register" Foreground="#623ed0"/>
@@ -67,9 +71,11 @@
                             </Button>
                         </StackPanel>
 
-                        <!--Menu Item - Logout-->
+                        <!--Menu Item - Afmelden-->
                         <StackPanel DockPanel.Dock="Bottom" Width="177" VerticalAlignment="Bottom" Margin="0 0 0 50" Visibility="Collapsed">
-                            <Button Name="miAfmelden" Background="Transparent" Foreground="#d0c0ff" Height="35" Margin="10 3" FontSize="13" Width="155" HorizontalContentAlignment="Left">
+                            <Button Name="miAfmelden" Click="miAfmelden_Click"
+                                    Background="Transparent" Foreground="#d0c0ff" Height="35" Margin="10 3" FontSize="13" Width="155"
+                                    HorizontalContentAlignment="Left">
                                 <StackPanel Orientation="Horizontal">
                                     <Label Foreground="#d0c0ff" Content="&#59179;"  FontSize="13" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Margin="20 2 10 2"/>
                                     <TextBlock VerticalAlignment="Center" Text="Uitloggen" Foreground="#d0c0ff"/>
@@ -163,7 +169,6 @@
                                         <DataGridTextColumn Header="Naam" Binding="{Binding Naam}" />
                                     </DataGrid.Columns>
                                 </DataGrid>
-
                             </StackPanel>
                         </TabItem>
                     </TabControl>

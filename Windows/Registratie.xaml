@@ -1,0 +1,74 @@
+﻿<Window x:Class="ExamenProject_Patrick.Windows.Registratie"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExamenProject_Patrick.Windows"
+        mc:Ignorable="d"
+        Title="Registratie" Height="450" Width="800">
+    <Window.Resources>
+        <Style x:Key="stButton" TargetType="Button">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0.5" EndPoint="1, 1.05">
+                        <GradientStop Color="Gray" Offset="0.1"/>
+                        <GradientStop Color="white" Offset="0.5"/>
+                        <GradientStop Color="Gray" Offset="0.9"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="stTextBlock" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Padding" Value="0,10,10,0"/>
+        </Style>
+
+        <Style x:Key="stTextBox" TargetType="TextBox">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Width" Value="200"/>
+        </Style>
+
+        <Style x:Key="stPasswordBox" TargetType="PasswordBox">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Width" Value="200"/>
+        </Style>
+    </Window.Resources>
+    <Grid HorizontalAlignment="Left" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Style="{StaticResource stTextBlock}" HorizontalAlignment="Center" Grid.Row="0" Grid.ColumnSpan="2" FontSize="18"  Text="Registreer Gebruiker"/>
+        <TextBlock Style="{StaticResource stTextBlock}" Grid.Row="1" Text="Naam"/>
+        <TextBlock Style="{StaticResource stTextBlock}" Grid.Row="2" Text="Email"/>
+        <TextBlock Style="{StaticResource stTextBlock}" Grid.Row="3" Text="Wachtwoord"/>
+        <TextBlock Style="{StaticResource stTextBlock}" Grid.Row="4" Text="Herhaal wachtwoord"/>
+        <TextBlock Style="{StaticResource stTextBlock}" Name="tbMededeling" Grid.Row="6" Visibility="Hidden" Width="350" Height="30" Background="Red" HorizontalAlignment="Left" Grid.ColumnSpan="2"/>
+        <TextBox Style="{StaticResource stTextBox}" Name="tbNaam" Grid.Row="1" Grid.Column="1"/>
+        <TextBox Style="{StaticResource stTextBox}" Name="tbEmail" Grid.Row="2" Grid.Column="1"/>
+        <PasswordBox Style="{StaticResource stPasswordBox}" Name="pbWachtwoord" Grid.Row="3" Grid.Column="1"/>
+        <PasswordBox Style="{StaticResource stPasswordBox}" Name="pbHerhaling" Grid.Row="4" Grid.Column="1"/>
+        <Button Style="{StaticResource stButton}" x:Name="btRegistreren" Content="Registreren" Grid.Row="5" Grid.ColumnSpan="2" Click="btRegistreren_Click"/>
+    </Grid>
+</Window>

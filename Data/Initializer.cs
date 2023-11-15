@@ -11,16 +11,16 @@ namespace ExamenProject_Patrick.Data
     {
         internal static void DbSetInitializer(MyDbContext context)
         {
-            Gebruiker dummy = null;
+            Gebruiker admin = null;
             if (!context.Gebruikers.Any())
             {
-                dummy = new Gebruiker { Naam = "-", Email = "-", Wachtwoord = "shit" };
-                context.Add(dummy);
+                admin = new Gebruiker { Naam = "admin", Email = "admin@admin.com", Wachtwoord = "admin" };
+                context.Add(admin);
                 context.SaveChanges();
             }
 
-            if (dummy == null)
-                dummy = context.Gebruikers.First(g => g.Naam == "-");
+            if (admin == null)
+                admin = context.Gebruikers.First(g => g.Naam == "admin");
 
             if (!context.Onderwerpen.Any())
             {
@@ -35,23 +35,23 @@ namespace ExamenProject_Patrick.Data
             Onderwerp dummyOnderwerp = context.Onderwerpen.First(c => c.Naam == "testOnderwerp");
 
             // Voeg een dummy afspraak toe bij het initialiseren van de database
-            if (!context.Afspraken.Any(a => a.Naam == "DummyVerleden"))
+            if (!context.Afspraken.Any())
             {
                 Afspraak dummyAfspraakVerleden = new Afspraak
                 {
                     DateTime = DateTime.Now.AddHours(-24), // Een uur in de toekomst
-                    Naam = "DummyVerleden",
+                    Gebruiker = admin,
                     Onderwerp = dummyOnderwerp
                 };
                 context.Afspraken.Add(dummyAfspraakVerleden);
             }
 
-            if (!context.Afspraken.Any(a => a.Naam == "Dummy"))
+            if (!context.Afspraken.Any())
             {
                 Afspraak dummyAfspraak = new Afspraak
                 {
                     DateTime = DateTime.Now.AddHours(+48), // Een uur in de toekomst
-                    Naam = "Dummy",
+                    Gebruiker = admin,
                     Onderwerp = dummyOnderwerp
                 };
                 context.Afspraken.Add(dummyAfspraak);

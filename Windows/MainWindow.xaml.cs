@@ -37,13 +37,15 @@ namespace ExamenProject_Patrick
             onderwerpComboBox.ItemsSource = onderwerpen
                 .Where(o => o.Naam != null).ToList();
 
+            App.mainWindow = this;
             App.context = context;
         }
 
         public void AfsprakenVerwacht()
         {
             afsprakenLijst = context.Afspraken
-                .Include(a => a.Onderwerp)
+                .Include(c => c.Onderwerp)
+                .Include(c => c.Gebruiker)
                 .Where(c => c.DateTime >= DateTime.Now)
                 .OrderBy(c => c.DateTime)
                 .ToList();
@@ -52,6 +54,14 @@ namespace ExamenProject_Patrick
             foreach (var afspraak in afsprakenLijst)
             {
                 afspraak.OnderwerpNaam = afspraak.Onderwerp?.Naam;
+                afspraak.GebruikerNaam = afspraak.Gebruiker?.Naam;
+            }
+
+            // Filter de lijst op basis van de naam van de gebruiker
+            if (App.gebruiker?.Naam != "admin") {
+            afsprakenLijst = afsprakenLijst
+                .Where(a => a.GebruikerNaam == App.gebruiker?.Naam)
+                .ToList();
             }
 
             afspraakGrid.ItemsSource = afsprakenLijst;
@@ -68,6 +78,15 @@ namespace ExamenProject_Patrick
             foreach (var afspraak in afsprakenVerledenLijst)
             {
                 afspraak.OnderwerpNaam = afspraak.Onderwerp?.Naam;
+                afspraak.GebruikerNaam = afspraak.Gebruiker?.Naam;
+            }
+
+            // Filter de lijst op basis van de naam van de gebruiker
+            if (App.gebruiker?.Naam != "admin")
+            {
+                afsprakenVerledenLijst = afsprakenVerledenLijst
+                    .Where(a => a.GebruikerNaam == App.gebruiker?.Naam)
+                    .ToList();
             }
 
             afspraakVerledenGrid.ItemsSource = afsprakenVerledenLijst;
@@ -127,6 +146,12 @@ namespace ExamenProject_Patrick
                             uurComboBox.Items.Add($"{hour}:00");
                         }
                     }
+
+                    if (startUur > 9 || startUur < 17)
+                    {
+                        uurComboBox.Items.Clear();
+                        uurComboBox.Items.Add("Geen beschikbare uren");
+                    }
                 } else
                 {
                     // een datum in het verleden
@@ -175,7 +200,7 @@ namespace ExamenProject_Patrick
                     Afspraak afspraak = new Afspraak
                     {
                         DateTime = afspraakDateTime,
-                        Naam = "test",
+                        Gebruiker = App.gebruiker,
                         Onderwerp = selectedOnderwerp // Gebruik de Naam in plaats van het hele Onderwerp-object
                     };
                     context.Add(afspraak);

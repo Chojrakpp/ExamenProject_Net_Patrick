@@ -41,10 +41,18 @@ namespace ExamenProject_Patrick.Windows
             if (gebruiker != null) // als gebruiker verschillend is dan null, aanmelden
             {
                 App.gebruiker = gebruiker;
-                App.mainWindow.miAangemeld.Text = "Welkom" + gebruiker.Naam;
+                App.mainWindow.main.Visibility = Visibility.Visible;
+                App.mainWindow.miAangemeld.Text = gebruiker.Naam;
                 App.mainWindow.miAfmelden.Visibility = Visibility.Visible;
-                App.mainWindow.miRegistreren.Visibility = Visibility.Visible;
-                App.mainWindow.miLogin.Visibility = Visibility.Visible;
+                App.mainWindow.miRegistreren.Visibility = Visibility.Collapsed;
+                App.mainWindow.miLogin.Visibility = Visibility.Collapsed;
+
+                if (gebruiker.Naam == "admin") {
+                    App.mainWindow.adminDashboard.Visibility = Visibility.Visible;
+                }
+
+                App.mainWindow.AfsprakenVerwacht();
+                App.mainWindow.AfsprakenVerleden();
                 this.Close();
             }
         }

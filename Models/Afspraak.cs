@@ -15,14 +15,18 @@ namespace ExamenProject_Patrick.Models
         [Required]
         [DataType(DataType.Date)]
         public DateTime DateTime { get; set; }
+        public Gebruiker Gebruiker { get; set; }
+        [ForeignKey("GebruikerId")]
+        public int GebruikerId { get; set; }
 
-        public string Naam { get; set; }
-
+        [NotMapped]
+        public string GebruikerNaam { get; set; }
         public Onderwerp Onderwerp { get; set; }
         [ForeignKey("Onderwerpen")]
         public int OnderwerpId { get; set; }
 
         [NotMapped]
         public string OnderwerpNaam { get; set; }
+        
     }
 }

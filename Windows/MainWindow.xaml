@@ -29,9 +29,9 @@
 
                         <!--Menu Naam - Gebruiker-->
                         <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center" Width="177">
-                            <TextBlock x:Name="miAangemeld" Text="Name" Foreground="White" FontSize="22" FontWeight="SemiBold"
+                            <TextBlock x:Name="miAangemeld" Text="Niet aangemeld" Foreground="White" FontSize="22" FontWeight="SemiBold"
                                DockPanel.Dock="Top" TextAlignment="Center" Margin="0 25 0 10"/>
-                            <TextBlock Text="Member" Foreground="#d0bfff" FontSize="14" FontWeight="SemiBold"
+                            <TextBlock Text="User" Foreground="#d0bfff" FontSize="14" FontWeight="SemiBold"
                                DockPanel.Dock="Top" TextAlignment="Center"/>
                             <Separator Background="#7e5fdc" Height="1" Width="165" Margin="0 15"/>
 
@@ -69,11 +69,9 @@
                                     <TextBlock VerticalAlignment="Center" Text="Register" Foreground="#623ed0"/>
                                 </StackPanel>
                             </Button>
-                        </StackPanel>
 
-                        <!--Menu Item - Afmelden-->
-                        <StackPanel DockPanel.Dock="Bottom" Width="177" VerticalAlignment="Bottom" Margin="0 0 0 50" Visibility="Collapsed">
-                            <Button Name="miAfmelden" Click="miAfmelden_Click"
+                            <!--Menu Item - Afmelden-->
+                            <Button Name="miAfmelden" Click="miAfmelden_Click" Visibility="Collapsed"
                                     Background="Transparent" Foreground="#d0c0ff" Height="35" Margin="10 3" FontSize="13" Width="155"
                                     HorizontalContentAlignment="Left">
                                 <StackPanel Orientation="Horizontal">
@@ -87,7 +85,7 @@
             </Grid>
 
             <!--Main-->
-            <Grid Grid.Column="1" Margin="20 50 20 0">
+            <Grid x:Name="main" Grid.Column="1" Margin="20 50 20 0" Visibility="Collapsed">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
@@ -119,7 +117,7 @@
 
                 <StackPanel Grid.Row="2" Orientation="Horizontal">
                     <DatePicker Name="datePicker" Background="#eff2f7" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,10,0" DisplayDateStart="{x:Static sys:DateTime.Now}" SelectedDate="{x:Static sys:DateTime.Now}" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
-                    <ComboBox x:Name="uurComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,10,0" Width="50"/>
+                    <ComboBox x:Name="uurComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,10,0" Width="200"/>
                     <ComboBox x:Name="onderwerpComboBox" DisplayMemberPath="Naam" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,10,0" Width="200"/>
                 </StackPanel>
 
@@ -133,8 +131,8 @@
                                           ScrollViewer.VerticalScrollBarVisibility="Auto">
                                           
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Naam" Binding="{Binding Naam}" />
-                                        <DataGridTextColumn Header="DateTime" Binding="{Binding DateTime, StringFormat='dd-MM-yyyy HH:mm'}" />
+                                        <DataGridTextColumn Header="Naam" Binding="{Binding GebruikerNaam}" />
+                                        <DataGridTextColumn Header="Datum" Binding="{Binding DateTime, StringFormat='dd-MM-yyyy HH:mm'}" />
                                         <DataGridTextColumn Header="OnderwerpNaam" Binding="{Binding OnderwerpNaam}" />
                                     </DataGrid.Columns>
                                 </DataGrid>
@@ -148,14 +146,14 @@
                                           ScrollViewer.VerticalScrollBarVisibility="Auto">
 
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Naam" Binding="{Binding Naam}" />
-                                        <DataGridTextColumn Header="DateTime" Binding="{Binding DateTime, StringFormat='dd-MM-yyyy HH:mm'}" />
+                                        <DataGridTextColumn Header="Naam" Binding="{Binding GebruikerNaam}" />
+                                        <DataGridTextColumn Header="Datum" Binding="{Binding DateTime, StringFormat='dd-MM-yyyy HH:mm'}" />
                                         <DataGridTextColumn Header="OnderwerpNaam" Binding="{Binding OnderwerpNaam}" />
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </StackPanel>
                         </TabItem>
-                        <TabItem Header="ADMIN">
+                        <TabItem x:Name="adminDashboard" Header="Dashboard" Visibility="Collapsed">
                             <StackPanel>
                                 <StackPanel Name="spOnderwerp" Orientation="Horizontal">
                                     <Label FontWeight="Bold" Width="150">Naam Onderwerp:</Label>

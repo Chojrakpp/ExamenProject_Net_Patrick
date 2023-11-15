@@ -33,18 +33,44 @@ namespace ExamenProject_Patrick.Migrations
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Naam")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("GebruikerId")
+                        .HasColumnType("int");
 
                     b.Property<int>("OnderwerpId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GebruikerId");
+
                     b.HasIndex("OnderwerpId");
 
                     b.ToTable("Afspraken");
+                });
+
+            modelBuilder.Entity("ExamenProject_Patrick.Models.Gebruiker", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Naam")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Wachtwoord")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Gebruikers");
                 });
 
             modelBuilder.Entity("ExamenProject_Patrick.Models.Onderwerp", b =>
@@ -66,11 +92,19 @@ namespace ExamenProject_Patrick.Migrations
 
             modelBuilder.Entity("ExamenProject_Patrick.Models.Afspraak", b =>
                 {
+                    b.HasOne("ExamenProject_Patrick.Models.Gebruiker", "Gebruiker")
+                        .WithMany()
+                        .HasForeignKey("GebruikerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ExamenProject_Patrick.Models.Onderwerp", "Onderwerp")
                         .WithMany("Afspraken")
                         .HasForeignKey("OnderwerpId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Gebruiker");
 
                     b.Navigation("Onderwerp");
                 });

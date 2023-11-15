@@ -3,10 +3,172 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:ExamenProject_Patrick"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Monteur Afspraken" Height="720" Width="1080">
+    <Border Background="#eff2f7" CornerRadius="30">
+        <Grid x:Name="grMain">
 
-    </Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--Links Menu-->
+            <Grid>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.Row="1" Background="#623ed0" CornerRadius="0 50 0 30">
+
+                    <DockPanel Background="Transparent"  Margin="5 0">
+
+                        <!--Menu Naam - Gebruiker-->
+                        <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Center" Width="177">
+                            <TextBlock Text="Name" Foreground="White" FontSize="22" FontWeight="SemiBold"
+                               DockPanel.Dock="Top" TextAlignment="Center" Margin="0 25 0 10"/>
+                            <TextBlock Text="Member" Foreground="#d0bfff" FontSize="14" FontWeight="SemiBold"
+                               DockPanel.Dock="Top" TextAlignment="Center"/>
+                            <Separator Background="#7e5fdc" Height="1" Width="165" Margin="0 15"/>
+
+                            <!--Menu Line-->
+                        </StackPanel>
+
+                        <!--Menu Item - Home-->
+                        <StackPanel DockPanel.Dock="Top" Width="177" VerticalAlignment="Top">
+                            <Button Background="Transparent" Foreground="#d0c0ff" Height="35" Margin="10 3" FontSize="13" Width="155" 
+                                    HorizontalContentAlignment="Left" BorderThickness="0">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <Label Foreground="#d0c0ff" Content="&#xE787;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Margin="20 2 10 2"/>
+                                    <TextBlock VerticalAlignment="Center" Text="Home" Foreground="#d0c0ff"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                        <!--Menu Item - Login-->
+                        <StackPanel DockPanel.Dock="Bottom" Width="177" VerticalAlignment="Bottom" Margin="0 0 0 20" >
+                            <Button Name="miLogin" Background="Transparent" Foreground="#d0c0ff" Height="35" Margin="10 3" FontSize="13" Width="155" HorizontalContentAlignment="Left" BorderThickness="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Foreground="#d0c0ff" Content="&#59257;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Margin="20 2 10 2"/>
+                                    <TextBlock VerticalAlignment="Center" Text="Aanmelden" Foreground="#d0c0ff"/>
+                                </StackPanel>
+                            </Button>
+
+                            <!--Menu Item - Register-->
+                            <Button Name="miRegistreren" Background="#d0c0ff" Foreground="#d0c0ff" Height="35" Margin="10 3" FontSize="13" Width="155" HorizontalContentAlignment="Left" BorderThickness="0">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Foreground="#623ed0" Content="&#xE8FA;" FontSize="13" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Margin="20 2 10 2"/>
+                                    <TextBlock VerticalAlignment="Center" Text="Register" Foreground="#623ed0"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+
+                        <!--Menu Item - Logout-->
+                        <StackPanel DockPanel.Dock="Bottom" Width="177" VerticalAlignment="Bottom" Margin="0 0 0 50" Visibility="Collapsed">
+                            <Button Name="miAfmelden" Background="Transparent" Foreground="#d0c0ff" Height="35" Margin="10 3" FontSize="13" Width="155" HorizontalContentAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Foreground="#d0c0ff" Content="&#59179;"  FontSize="13" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Margin="20 2 10 2"/>
+                                    <TextBlock VerticalAlignment="Center" Text="Uitloggen" Foreground="#d0c0ff"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </DockPanel>
+                </Border>
+            </Grid>
+
+            <!--Main-->
+            <Grid Grid.Column="1" Margin="20 50 20 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <!--Titel-->
+                <TextBlock Text="Afspraken" Grid.Row="0" FontSize="32" FontWeight="SemiBold" FontFamily="Arial" 
+                           Margin="0 20 0 0" HorizontalAlignment="Left" Foreground="#2D2D2D"/>
+
+                <!--Button nieuw afpsraak-->
+
+                <Button Click="AddAfspraak_Click" Grid.Row="0" Background="#623ed0" Foreground="#d0c0ff" Height="35"
+                         Margin="10 3" FontSize="13" HorizontalContentAlignment="Left" BorderThickness="0" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Label Foreground="#d0c0ff" Content="&#xE787;" FontFamily="Segoe Fluent Icons, Segoe MDL2 Assets" Margin="20 2 10 2"/>
+                        <TextBlock VerticalAlignment="Center" Text="Afspraak Toevoegen" Foreground="#d0c0ff" Margin="0,0,20,0"/>
+                    </StackPanel>
+                </Button>
+
+                <StackPanel Grid.Row="1">
+                    <Separator Grid.Row="1" VerticalAlignment="Top" Background="#d0c0ff" Height="1" Margin="0 10 0 5"/>
+                    <TextBlock Grid.Row="1" Grid.ColumnSpan="2" FontWeight="Bold" Height="30" Name="tbMessage" TextAlignment="Center" 
+                               VerticalAlignment="Center" Visibility="Collapsed"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Orientation="Horizontal">
+                    <DatePicker Name="datePicker" Background="#eff2f7" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,10,0" DisplayDateStart="{x:Static sys:DateTime.Now}" SelectedDate="{x:Static sys:DateTime.Now}" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+                    <ComboBox x:Name="uurComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,10,0" Width="50"/>
+                    <ComboBox x:Name="onderwerpComboBox" DisplayMemberPath="Naam" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,10,0" Width="200"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Margin="10 10 0 0">
+                    <TabControl>
+                        <TabItem Header="Verwacht" FontSize="13" Background="#eff2f7">
+                            <StackPanel Orientation="Vertical" Background="#eff2f7">
+                                <DataGrid Name="afspraakGrid" HorizontalAlignment="Left" VerticalAlignment="Top" AutoGenerateColumns="False" 
+                                          ColumnWidth="*" IsReadOnly="True" MaxHeight="300px"
+                                          ScrollViewer.CanContentScroll="True" 
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                          
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Naam" Binding="{Binding Naam}" />
+                                        <DataGridTextColumn Header="DateTime" Binding="{Binding DateTime, StringFormat='dd-MM-yyyy HH:mm'}" />
+                                        <DataGridTextColumn Header="OnderwerpNaam" Binding="{Binding OnderwerpNaam}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem Header="Verleden" FontSize="13" Background="#eff2f7">
+                            <StackPanel Orientation="Vertical" Background="#eff2f7">
+                                <DataGrid Name="afspraakVerledenGrid" HorizontalAlignment="Left" VerticalAlignment="Top" AutoGenerateColumns="False" 
+                                          ColumnWidth="*" IsReadOnly="True" MaxHeight="300px"
+                                          ScrollViewer.CanContentScroll="True" 
+                                          ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Naam" Binding="{Binding Naam}" />
+                                        <DataGridTextColumn Header="DateTime" Binding="{Binding DateTime, StringFormat='dd-MM-yyyy HH:mm'}" />
+                                        <DataGridTextColumn Header="OnderwerpNaam" Binding="{Binding OnderwerpNaam}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem Header="ADMIN">
+                            <StackPanel>
+                                <StackPanel Name="spOnderwerp" Orientation="Horizontal">
+                                    <Label FontWeight="Bold" Width="150">Naam Onderwerp:</Label>
+                                    <TextBox Name="tbOnderwerpNaam" Width="100"/>
+                                    <Button Width="200" Content="Bewaar Onderwerp" Click="btBewaarOnderwerp_Click" 
+                                            Background="#623ed0" Foreground="#d0c0ff"  BorderThickness="0" FontSize="13" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                                <DataGrid Name="onderwerpenDataGrid" AutoGenerateColumns="False" SelectionMode="Single" ColumnWidth="*">
+                                    <DataGrid.Columns>
+                                        <!-- DataGridTextColumn voor de Naam -->
+                                        <DataGridTextColumn Header="Naam" Binding="{Binding Naam}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+
+                            </StackPanel>
+                        </TabItem>
+                    </TabControl>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
 </Window>

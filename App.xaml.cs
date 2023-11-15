@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExamenProject_Patrick.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,7 @@ namespace ExamenProject_Patrick
     /// </summary>
     public partial class App : Application
     {
+        internal static MyDbContext context = null;
+
     }
 }
